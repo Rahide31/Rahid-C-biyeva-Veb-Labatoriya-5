@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="az">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cəbiyeva Rahidə - CV</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="cv-container">
+        <div class="sidebar">
+    <img src="C:\Users\PC\Desktop\1f23081c-ba41-40a6-ae77-87e30f22b107.jpg" alt="Cəbiyeva Rahidə" />
+    <h2>Cəbiyeva Rahidə</h2>
+    <p><strong>Doğum Tarixi:</strong> 31.08.2007 <button id="editBirthDate">Düzəliş et</button></p>
+    <p><strong>Əlaqə:</strong> 099 864 04 54 <button id="editContact">Düzəliş et</button></p>
+    <p><strong>Email:</strong> <a href="mailto:cebiyevarahide31@gmail.com">cebiyevarahide31@gmail.com</a> <button id="editEmail">Düzəliş et</button></p>
+    <p><strong>Ünvan:</strong> Bakı, Nizami rayonu, Şirin Mirzəyev 180 <button id="editAddress">Düzəliş et</button></p>
+    <div class="languages">
+        <h3>Dillər <button id="editLanguages">Düzəliş et</button></h3>
+        <ul>
+            <li>🇬🇧 English - Pre-intermediate</li>
+            <li>🇹🇷 Türk - Çox yaxşı</li>
+            <li>🇦🇿 Azərbaycan - Çox yaxşı</li>
+        </ul>
+    </div>
+</div>
+
+```
+    <div class="content">
+        <div class="dynamic-section">
+            <h2>Təhsil</h2>
+            <ul id="edu-list"></ul>
+        </div>
+
+        <div class="dynamic-section">
+            <h2>İş Təcrübəsi</h2>
+            <ul id="exp-list"></ul>
+        </div>
+
+        <div class="dynamic-section">
+            <h2>Bacarıqlar</h2>
+            <ul id="skill-list"></ul>
+        </div>
+
+        <button id="resetBtn">Hamısını Sıfırla</button>
+
+        <h2>Haqqımda</h2>
+        <p>Məsuliyyətli, öyrənməyə açıq və texnologiyaya böyük maraq göstərən bir tələbəyəm...</p>
+
+        <h2>Şəxsi Keyfiyyətlər</h2>
+        <ul>
+            <li>Yüksək məsuliyyət hissi və özünənəzarət</li>
+            <li>Sürətli öyrənmə və tətbiqetmə bacarığı</li>
+            <li>Komanda və fərdi şəkildə effektiv işləmək qabiliyyəti</li>
+            <li>Analitik və tənqidi düşüncə</li>
+            <li>Güclü təşkilati və planlaşdırma bacarığı</li>
+            <li>Yeniliklərə açıq və inkişaf yönümlü düşüncə</li>
+            <li>Güclü ünsiyyət və təqdimat bacarıqları</li>
+        </ul>
+        <button onclick="shuffleQualities()">Keyfiyyətləri Qarışdır</button>
+
+        <h2>Hobbi və Maraqlar</h2>
+        <p>Musiqi dinləmək, Kitab oxumaq, İnkişaf üçün əlavə biliklər əldə etməyə çalışmaq</p>
+
+        <h2>Əlaqə Forması</h2>
+        <form id="contactForm">
+            <label>Ad: <input type="text" id="name" required /></label><br />
+            <label>Email: <input type="email" id="email" required /></label><br />
+            <label>Tarix: <input type="date" id="date" required /></label><br />
+            <label>Təsvir: <textarea id="description" required></textarea></label><br />
+            <button type="submit">Yadda saxla</button>
+        </form>
+        <div id="errorMessage" style="color:red; margin-top:10px;"></div>
+        <div id="savedData" style="margin-top:20px;"></div>
+    </div>
+</div>
+
+<button onclick="showMotivation()">Motivasiya Ver</button>
+<button onclick="toggleCV()">CV-ni göstər/gizlət</button>
+
+<script src="script.js"></script>
+```
+
+</body>
+</html>

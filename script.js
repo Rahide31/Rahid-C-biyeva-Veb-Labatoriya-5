@@ -1,4 +1,3 @@
-// script.js
 
 const eduList = document.getElementById('edu-list');
 const expList = document.getElementById('exp-list');
@@ -13,7 +12,6 @@ let profileData = {
 
 const LOCAL_STORAGE_KEY = 'profileData';
 
-// Simulyasiya üçün data.json kimi qəbul edəcəyimiz verilən
 const simulatedFetchData = {
   education: [
     "Azərbaycan Texniki Universiteti - İnformasiya Təhlükəsizliyi (1-ci kurs, 2024-Davam edir)",
@@ -23,18 +21,15 @@ const simulatedFetchData = {
   skills: ["Python", "HTML, CSS"]
 };
 
-// --- Render funksiyası ---
 function renderList(listElement, items, type) {
   listElement.innerHTML = '';
   items.forEach((item, index) => {
     const li = document.createElement('li');
 
-    // Normal görünüş (display)
     const span = document.createElement('span');
     span.textContent = item;
     li.appendChild(span);
 
-    // Düymə - redaktə üçün
     const editBtn = document.createElement('button');
     editBtn.textContent = 'Düzəliş et';
     editBtn.style.marginLeft = '10px';
@@ -45,7 +40,6 @@ function renderList(listElement, items, type) {
   });
 }
 
-// --- Redaktə rejimi ---
 function enableEdit(listItem, index, type) {
   listItem.innerHTML = '';
 
@@ -79,14 +73,12 @@ function enableEdit(listItem, index, type) {
   listItem.appendChild(cancelBtn);
 }
 
-// --- Bütün siyahıları yenidən render et ---
 function renderAll() {
   renderList(eduList, profileData.education, 'education');
   renderList(expList, profileData.experience, 'experience');
   renderList(skillList, profileData.skills, 'skills');
 }
 
-// --- localStorage-dan yüklə ---
 function loadFromLocalStorage() {
   const dataStr = localStorage.getItem(LOCAL_STORAGE_KEY);
   if (dataStr) {
@@ -101,12 +93,10 @@ function loadFromLocalStorage() {
   return false;
 }
 
-// --- localStorage-a yadda saxla ---
 function saveToLocalStorage() {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(profileData));
 }
 
-// --- Simulyasiya fetch funksiyası ---
 function fetchProfileData() {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -115,19 +105,16 @@ function fetchProfileData() {
   });
 }
 
-// --- Reset funksiyası ---
 resetBtn.addEventListener('click', () => {
   if (confirm('Məlumat sıfırlansın? Bütün dəyişikliklər itəcək!')) {
     localStorage.removeItem(LOCAL_STORAGE_KEY);
-    init(); // yenidən ilkin datanı yüklə
+    init();
   }
 });
 
-// --- İlk yüklənmə ---
 async function init() {
   const hasLocalData = loadFromLocalStorage();
   if (!hasLocalData) {
-    // Fetch ilə (simulyasiya) data yüklə
     try {
       const fetchedData = await fetchProfileData();
       profileData.education = fetchedData.education;
@@ -143,8 +130,6 @@ async function init() {
 
 init();
 
-
-// --- Əlavə funksiyalar: Keyfiyyətləri qarışdır ---
 function shuffleQualities() {
   const qualities = [
     "Yüksək məsuliyyət hissi və özünənəzarət",
@@ -168,7 +153,6 @@ function shuffleQualities() {
   });
 }
 
-// --- Kontakt Formu (sənin əvvəlki funksionallıq) ---
 const contactForm = document.getElementById('contactForm');
 const errorMessage = document.getElementById('errorMessage');
 const savedData = document.getElementById('savedData');
@@ -181,7 +165,6 @@ contactForm.addEventListener('submit', (e) => {
   const date = document.getElementById('date').value.trim();
   const description = document.getElementById('description').value.trim();
 
-  // Sadə validasiya
   if (!name || !email || !date || !description) {
     errorMessage.textContent = 'Zəhmət olmasa bütün sahələri doldurun.';
     return;
@@ -193,11 +176,9 @@ contactForm.addEventListener('submit', (e) => {
 
   errorMessage.textContent = '';
 
-  // Məlumatı localStorage saxla
   const formData = { name, email, date, description };
   localStorage.setItem('contactFormData', JSON.stringify(formData));
 
-  // Ekrana göstər
   savedData.innerHTML = `
   <h3>Yadda saxlanmış məlumatlar:</h3>
   <p><b>Ad:</b> ${name}</p>
@@ -205,17 +186,14 @@ contactForm.addEventListener('submit', (e) => {
   <p><b>Tarix:</b> ${date}</p>
   <p><b>Təsvir:</b> ${description}</p>
 `;
-  // Formu sıfırla
   contactForm.reset();
 });
 
 function validateEmail(email) {
-  // Sadə email yoxlama regex
   const re = /\S+@\S+\.\S+/;
   return re.test(email);
 }
 
-// --- CV-ni göstər/gizlət funksiyası ---
 function toggleCV() {
   const cvContainer = document.querySelector('.cv-container');
   if (cvContainer.style.display === 'none') {
@@ -225,7 +203,6 @@ function toggleCV() {
   }
 }
 
-// --- Motivasiya funksiyası ---
 function showMotivation() {
   const messages = [
     "Bugün əzmlə çalış, sabah uğur sənindir!",
@@ -239,7 +216,6 @@ function showMotivation() {
 ocument.getElementById('editBirthDate').addEventListener('click', function() {
     const current = prompt("Doğum Tarixini daxil et:", "31.08.2007");
     if (current !== null) {
-        // Yeni dəyəri göstərmək üçün
         this.parentElement.childNodes[1].textContent = " Doğum Tarixi: " + current + " ";
     }
 });
@@ -254,7 +230,6 @@ document.getElementById('editContact').addEventListener('click', function() {
 document.getElementById('editEmail').addEventListener('click', function() {
     const current = prompt("Email ünvanını daxil et:", "cebiyevarahide31@gmail.com");
     if (current !== null) {
-        // Email linki update üçün:
         this.parentElement.querySelector('a').textContent = current;
         this.parentElement.querySelector('a').href = "mailto:" + current;
     }
@@ -271,7 +246,7 @@ document.getElementById('editLanguages').addEventListener('click', function() {
     const current = prompt("Dilləri vergüllə ayıraraq daxil et:", "English - Pre-intermediate, Türk - Çox yaxşı, Azərbaycan - Çox yaxşı");
     if (current !== null) {
         const ul = this.parentElement.nextElementSibling;
-        ul.innerHTML = ""; // təmizlə
+        ul.innerHTML = "";
         const langs = current.split(",");
         langs.forEach(lang => {
             const li = document.createElement("li");
